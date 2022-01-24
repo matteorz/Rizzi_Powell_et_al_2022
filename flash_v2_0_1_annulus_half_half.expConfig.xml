@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<script>tCSF_flash_v2_0_1_annulus_half_half.m</script>
+	<ptrVersion>0.7</ptrVersion>
+	
+	<params>
+		<graphicParams> <!-- PJ: I think these values are actually ignored by the screen. The VSG values are used instead, as set in VSG Desktop.exe. They may still be being used by the Tobii though (??) -->
+			<screenNum>1</screenNum>
+			<Fr>140</Fr>
+			<screenWidth_px>1024</screenWidth_px> <!-- 1920 2560 -->
+			<screenHeight_px>768</screenHeight_px> <!-- 1080 1440 1600 -->
+			<screenWidth_cm>40</screenWidth_cm> <!-- 64, 59.7 -->
+			<screenHeight_cm>30.5</screenHeight_cm> <!-- 36, 33.6 -->
+			<assumedViewingDistance_cm>85</assumedViewingDistance_cm> <!-- distance to MONITOR (includes tracker offset). N.B. given a 64 cm wide monitor, 65 would give 52.4 x 32.8 DVA -->
+		</graphicParams>
+		
+		<stimParams>
+			<eccentricity_x_deg>[-6 6]</eccentricity_x_deg>  <!-- [-6 6], [NaN 0] NEGATIVE to have targets appear LEFT of fixation marker: N.B.: is distance to the CENTRE of the target, not its edge, NaN for no stimulus to be shown -->
+			<eccentricity_y_deg>[-0 0]</eccentricity_y_deg> <!-- [-1 -1], [NaN 0], NEGATIVE to have targets appear ABOVE fixation marker, NaN for no stimulus to be shown -->
+			<temporalfreq_hz>[4]</temporalfreq_hz>	<!-- 35 possible, but shows tearing [4 10 14 20 28] -->	
+			<sensors_fn>ConeSensitivities_SS_2degELin3908301.mat</sensors_fn>
+			<deviceSPD_fn>RizziInterp.mat</deviceSPD_fn>
+			<coneType>LMS</coneType> <!-- L, M, S, or combinations thereof, e.g.: LS -->
+			<diameter_deg>1</diameter_deg> <!-- 1 -->
+			<useOverlay>2</useOverlay> <!-- 0 [never], 1 [test page only], 2 [always] -->
+			<apperture_x_deg>[-6 6]</apperture_x_deg>
+			<apperture_y_deg>[0 0]</apperture_y_deg>
+			<apperture_deg>4.5</apperture_deg>
+			<cosRamp_sec>0.2</cosRamp_sec>
+		</stimParams>
+
+		<psychometricParams>
+			<paradigm>QUEST</paradigm>
+			<useLogScale>true</useLogScale> <!-- only works with QUEST -->
+			<qparams>
+				<deltaMin>0.1</deltaMin> <!-- e.g., if doing L then: [0.001 0 0] -->		
+				<deltaMax>30</deltaMax> <!-- e.g., if doing L then: [0.186 0 0] -->
+				<deltaStepsize>1</deltaStepsize>  			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+				<beta>1</beta> 								<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+				<lambda>0.05</lambda> <!-- lapse rate -->
+				<gamma>0.5</gamma> <!-- guess rate, fixed at 50% 2AFC -->
+				<PF>@PAL_CumulativeNormal</PF>
+				<stopCriterion>reversals</stopCriterion>
+				<stopRule>18</stopRule>
+			</qparams>
+			<scparams>
+				<x>1</x>
+			</scparams>
+			<mcsparams>
+				<levels>[1 50 100]</levels>
+				<nTrialsPerLevel>3</nTrialsPerLevel>
+			</mcsparams>
+
+			<instructions>welcome to the exp, press left arrow to begin</instructions> <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<breakAfterNBlocks>[99 100]</breakAfterNBlocks> <!-- Not yet implemented! -->
+			<conditionSequence>inRandOrder</conditionSequence> <!-- 'inOrder', 'inRandOrder', 'interleaved' -->
+
+			<preInt_sec>.2</preInt_sec>			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<stimInt_sec>2</stimInt_sec>		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<fbackInt_sec>1</fbackInt_sec>		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			
+			<allowRespBeforeEndOfStim>true</allowRespBeforeEndOfStim>
+			<useStaticWNoisePostMask>false</useStaticWNoisePostMask>
+		</psychometricParams>
+
+
+		<eyetrackParams>
+			<ivisVersion>1.5</ivisVersion>
+			<type>IvTobii</type> 				<!-- 'IvTobiiEyeX', 'tobii', 'mouse' -->
+			<id>TX120-203-81900130</id>
+			<eye>2</eye> 						<!-- 0==left, 1==right, 2==both -->
+			<useGUI>false</useGUI>
+			
+			<gaze_nOutliersPermitted>10</gaze_nOutliersPermitted> 					<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<gaze_outlierCriterion_px>100</gaze_outlierCriterion_px>  				<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<gaze_nMissingSamplesPermitted>10</gaze_nMissingSamplesPermitted>		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		</eyetrackParams>
+
+		<audioParams>
+			<devID></devID>
+		</audioParams>
+
+	</params>
+</config>

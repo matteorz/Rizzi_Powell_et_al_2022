@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<script>tCSF_gabor_v0_0_4.m</script>
+	<ptrVersion>0.7</ptrVersion>
+	
+	<params>
+		<graphicParams> <!-- PJ: I think these values are actually ignored by the screen. The VSG values are used instead, as set in VSG Desktop.exe. They may still be being used by the Tobii though (??) -->
+			<screenNum>1</screenNum>
+			<Fr>140</Fr>
+			<screenWidth_px>1024</screenWidth_px> <!-- 1920 2560 -->
+			<screenHeight_px>768</screenHeight_px> <!-- 1080 1440 1600 -->
+			<screenWidth_cm>40</screenWidth_cm> <!-- 64, 59.7 -->
+			<screenHeight_cm>30.5</screenHeight_cm> <!-- 36, 33.6 -->
+			<assumedViewingDistance_cm>85</assumedViewingDistance_cm> <!-- distance to MONITOR (includes tracker offset). N.B. given a 64 cm wide monitor, 65 would give 52.4 x 32.8 DVA -->
+		</graphicParams>
+		
+		<stimParams>
+			<eccentricity_deg>[-2]</eccentricity_deg>
+			<orientation_deg>[-45 45]</orientation_deg> <!-- NaN for no Gaussian. Currently expect 2 items, 1st corresponds to left-arrow response, 2nd corresponds to right-arrow response -->
+			<spatialfreq_deg>[4]</spatialfreq_deg>
+			<temporalfreq_hz>[4 10]</temporalfreq_hz>	<!-- 35 possible, but shows tearing -->		
+		</stimParams>
+
+		<psychometricParams>
+			<paradigm>QUEST</paradigm>
+			<useLogScale>true</useLogScale> <!-- only works with QUEST -->
+			<qparams>
+				<deltaMin>0.1</deltaMin>
+				<deltaMax>100</deltaMax>
+				<deltaStepsize>1</deltaStepsize>  			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+				<beta>1</beta> 								<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+				<lambda>0.05</lambda> <!-- lapse rate -->
+				<gamma>0.5</gamma> <!-- guess rate, fixed at 50% 2AFC -->
+				<PF>@PAL_CumulativeNormal</PF>
+				<stopCriterion>reversals</stopCriterion>
+				<stopRule>28</stopRule>
+			</qparams>
+			<scparams>
+				<x>1</x>
+			</scparams>
+			<mcsparams>
+				<levels>[1 50 100]</levels>
+				<nTrialsPerLevel>3</nTrialsPerLevel>
+			</mcsparams>
+
+			<instructions>welcome to the exp, press left arrow to begin</instructions> <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<breakAfterNBlocks>[99 100]</breakAfterNBlocks> <!-- Not yet implemented! -->
+			<IV>temporalfreq_hz</IV> <!-- 'spatialfreq_deg', 'temporalfreq_hz' -->
+			<conditionSequence>inRandOrder</conditionSequence> <!-- 'inOrder', 'inRandOrder', 'interleaved' -->
+
+			<preInt_sec>.2</preInt_sec>			<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<stimInt_sec>2</stimInt_sec>		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<fbackInt_sec>1</fbackInt_sec>		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			
+			<allowRespBeforeEndOfStim>true</allowRespBeforeEndOfStim>
+			<useStaticWNoisePostMask>true</useStaticWNoisePostMask>
+		</psychometricParams>
+
+
+		<eyetrackParams>
+			<ivisVersion>1.5</ivisVersion>
+			<type>IvTobii</type> 				<!-- 'IvTobiiEyeX', 'tobii', 'mouse' -->
+			<id>TX120-203-81900130</id>
+			<eye>2</eye> 						<!-- 0==left, 1==right, 2==both -->
+			<useGUI>false</useGUI>
+			
+			<gaze_nOutliersPermitted>10</gaze_nOutliersPermitted> 					<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<gaze_outlierCriterion_px>100</gaze_outlierCriterion_px>  				<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<gaze_nMissingSamplesPermitted>10</gaze_nMissingSamplesPermitted>		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		</eyetrackParams>
+
+		<audioParams>
+			<devID></devID>
+		</audioParams>
+
+	</params>
+</config>
